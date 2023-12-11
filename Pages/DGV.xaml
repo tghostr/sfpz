@@ -1,0 +1,37 @@
+﻿<Page x:Class="WpfApp1.Pages.DGV"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="450"
+      Title="DGV" Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="2" Content="Открыть в ListView" Click="btLvClick"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="tbSearch" Margin="3" TextChanged="tbSearchChanged" FontSize="15"/>
+            <ComboBox Grid.Column="1" Name="cbSort" SelectionChanged="cbSortChanged" Margin="3" FontSize="15"/>
+            <ComboBox Grid.Column="2" x:Name="cbFiltr" SelectedItem="{Binding PhoneBrand}" SelectionChanged="cbFiltrChanged" DisplayMemberPath="PhoneBrandName" Margin="3" FontSize="15"/>
+        </Grid>
+        <DataGrid Grid.Row="1" Name="Phones" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding PhoneId}" Header="Номер"/>
+                <DataGridTextColumn Binding="{Binding PhoneBrand.PhoneBrandName}" Header="Бренд"/>
+                <DataGridTextColumn Binding="{Binding PhoneModel}" Header="Модель"/>
+                <DataGridTextColumn Binding="{Binding PhonePrice}" Header="Стоимость"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
